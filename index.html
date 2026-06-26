@@ -1,323 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Votación Mundial 2026</title>
-  <style>
-    :root{--blue:#0b2b63;--red:#c9162b}
-    *{box-sizing:border-box}
-    body{
-      margin:0;font-family:Arial, Helvetica, sans-serif;color:#fff;min-height:100vh;
-      background:radial-gradient(circle at top left, rgba(201,22,43,.35), transparent 30%),
-      radial-gradient(circle at top right, rgba(242,201,76,.22), transparent 28%),
-      linear-gradient(135deg,#07152f,#0b2b63 55%,#07152f);
-    }
-    header{padding:22px 18px 10px;text-align:center}
-    .logo{display:inline-flex;gap:12px;align-items:center;justify-content:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:10px 18px;border-radius:999px;font-weight:800;letter-spacing:1px}
-    h1{font-size:clamp(34px,7vw,72px);line-height:.95;margin:20px 0 8px;text-transform:uppercase;text-shadow:0 5px 18px rgba(0,0,0,.35)}
-    h1 span{color:var(--red)}
-    .subtitle{font-size:clamp(16px,2.8vw,24px);font-weight:700;margin:0 auto;max-width:900px}
-    .wrap{width:min(1180px,94vw);margin:0 auto;padding:16px 0 36px}
-    .panel{background:rgba(255,255,255,.96);color:#111827;border-radius:28px;padding:24px;box-shadow:0 22px 80px rgba(0,0,0,.35);border:4px solid rgba(255,255,255,.25)}
-    .login{max-width:620px;margin:34px auto 0;text-align:center}
-    .login h2{font-size:34px;margin:6px 0 8px;color:var(--blue)}
-    .login p{color:#374151;font-size:18px}
-    input{width:100%;padding:20px;font-size:30px;text-align:center;border:3px solid #d1d5db;border-radius:18px;letter-spacing:7px;font-weight:800;outline:none}
-    input:focus{border-color:var(--blue);box-shadow:0 0 0 5px rgba(11,43,99,.15)}
-    button{border:0;border-radius:18px;padding:18px 22px;font-size:20px;font-weight:900;cursor:pointer;text-transform:uppercase}
-    .btn-primary{background:var(--red);color:white;width:100%;margin-top:16px}
-    .btn-blue{background:var(--blue);color:white}
-    .btn-light{background:#eef2ff;color:var(--blue)}
-    .btn-danger{background:#fee2e2;color:#991b1b}
-    .error{color:#b91c1c;font-weight:800;min-height:24px;margin-top:12px}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
-    @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
-    .country{background:#fff;border:3px solid #e5e7eb;border-radius:22px;padding:18px 12px;text-align:center;min-height:160px;transition:.18s;box-shadow:0 10px 22px rgba(0,0,0,.08)}
-    .country:hover{transform:translateY(-3px);border-color:var(--red)}
-    .flag{font-size:54px;line-height:1;margin-bottom:12px}
-    .country h3{margin:0;color:var(--blue);font-size:22px}
-    .country small{color:#6b7280;font-weight:700}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-    .topbar h2{margin:0;color:var(--blue);font-size:32px}
-    .hidden{display:none!important}
-    .success{text-align:center;padding:38px 20px}
-    .success .big{font-size:74px}.success h2{font-size:42px;margin:10px 0;color:var(--blue)}.success p{font-size:22px;color:#374151}
-    .admin{margin-top:22px;background:rgba(255,255,255,.96);color:#111827;border-radius:24px;padding:18px}
-    .admin h2,.admin h3{color:var(--blue)}
-    .results-layout{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;margin-top:16px}
-    @media(max-width:900px){.results-layout{grid-template-columns:1fr}}
-    .barrow{display:grid;grid-template-columns:145px 1fr 64px;gap:10px;align-items:center;margin:10px 0;font-weight:800}
-    .barbg{height:28px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--red));width:0%}
-    .stat{background:#f8fafc;border:1px solid #e5e7eb;padding:14px;border-radius:16px;margin-bottom:12px}
-    table{width:100%;border-collapse:collapse;font-size:14px} th,td{padding:8px;border-bottom:1px solid #e5e7eb;text-align:left}
-    .admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-    .admin-access{position:fixed;right:14px;bottom:14px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--blue);font-size:13px;font-weight:900;padding:10px 14px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:.8}
-    .admin-access:hover{opacity:1}
-    .footer-note{color:#dbeafe;text-align:center;font-size:14px;opacity:.85;padding-bottom:20px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votación Mundial 2026</title>
+<style>
+:root{--blue:#08245c;--blue2:#0b3b86;--red:#d7132f;--gold:#f6c453}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;background:radial-gradient(circle at 10% 0%,rgba(215,19,47,.42),transparent 28%),radial-gradient(circle at 90% 0%,rgba(255,255,255,.18),transparent 22%),linear-gradient(135deg,#10142f,#08245c 55%,#06183d)}
+header{text-align:center;padding:24px 16px 8px}
+.logo{display:inline-flex;gap:10px;align-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:10px 18px;font-weight:900;letter-spacing:1px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+h1{font-size:clamp(38px,7vw,82px);line-height:.95;margin:22px auto 8px;text-transform:uppercase;text-shadow:0 10px 28px rgba(0,0,0,.28)}
+h1 span{color:var(--red)}
+.subtitle{font-size:clamp(16px,2.4vw,25px);font-weight:800;max-width:940px;margin:0 auto}
+.wrap{width:min(1180px,94vw);margin:0 auto;padding:24px 0 44px}
+.panel{background:rgba(255,255,255,.97);color:#111827;border-radius:30px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.6)}
+.login{max-width:650px;margin:26px auto 0;text-align:center}
+.login h2{font-size:34px;color:var(--blue);margin:10px 0}
+.login p{font-size:18px;color:#374151}
+input{width:100%;padding:20px;font-size:30px;text-align:center;border:3px solid #d1d5db;border-radius:18px;letter-spacing:7px;font-weight:900;outline:none;background:#fff}
+input:focus{border-color:var(--blue2);box-shadow:0 0 0 5px rgba(11,59,134,.14)}
+button{border:0;border-radius:18px;padding:17px 22px;font-size:18px;font-weight:900;cursor:pointer;text-transform:uppercase;transition:.16s}
+button:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--red);color:#fff;width:100%;margin-top:16px}.btn-blue{background:var(--blue);color:#fff}.btn-light{background:#eef2ff;color:var(--blue)}.btn-danger{background:#fee2e2;color:#991b1b}
+.error{color:#b91c1c;font-weight:900;min-height:24px;margin-top:12px}.hidden{display:none!important}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.topbar h2{margin:0;color:var(--blue);font-size:32px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+.country{background:white;border:3px solid #e5e7eb;border-radius:22px;padding:18px 10px;min-height:156px;text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.08)}
+.country:hover{border-color:var(--red);transform:translateY(-2px)}.flag{font-size:52px;margin-bottom:10px}.country h3{margin:0;color:var(--blue);font-size:21px}.country small{color:#6b7280;font-weight:700}
+.success{text-align:center;padding:50px 20px}.success .big{font-size:76px}.success h2{font-size:42px;color:var(--blue);margin:12px 0}.success p{font-size:22px;color:#374151}
+.admin-access{position:fixed;right:14px;bottom:14px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--blue);font-size:13px;font-weight:900;padding:10px 14px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.admin{margin-top:20px;background:rgba(255,255,255,.97);color:#111827;border-radius:24px;padding:20px}.admin h2,.admin h3{color:var(--blue)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.dashboard{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}@media(max-width:900px){.dashboard{grid-template-columns:1fr}}
+.stat{background:#f8fafc;border:1px solid #e5e7eb;border-radius:18px;padding:16px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}@media(max-width:700px){.cards{grid-template-columns:1fr}}
+.card{background:white;border:1px solid #e5e7eb;border-radius:18px;padding:16px}.card small{color:#6b7280;font-weight:800;text-transform:uppercase}.card strong{display:block;color:var(--blue);font-size:28px;margin-top:5px}.winnerCard{border:2px solid var(--gold);background:linear-gradient(135deg,#fff,#fff8df)}
+.barrow{display:grid;grid-template-columns:155px 1fr 60px;gap:10px;align-items:center;margin:10px 0;font-weight:800}.barbg{height:30px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--blue2),var(--red));min-width:0}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}
+.screenMode{background:#06183d;color:#fff;min-height:100vh;padding:22px}.screenMode .admin{background:transparent;color:#fff;box-shadow:none}.screenMode .stat,.screenMode .card{background:rgba(255,255,255,.95);color:#111827}.screenMode h1{font-size:clamp(42px,8vw,90px)}
+.footer-note{text-align:center;color:#dbeafe;opacity:.85;padding-bottom:20px;font-size:14px}
+</style>
 </head>
 <body>
-<header>
-  <div class="logo">⚽ USA 2026 · 🗳️ TU VOTO CUENTA</div>
-  <h1>¿Quién será <span>campeón?</span></h1>
-  <p class="subtitle">Vota por tu selección favorita. En la cancha y en la democracia, tu participación cuenta.</p>
-</header>
-
+<header id="mainHeader"><div class="logo">⚽ USA 2026 · 🗳️ TU VOTO CUENTA</div><h1>¿Quién será <span>campeón?</span></h1><p class="subtitle">Vota por tu selección favorita. En la cancha y en la democracia, tu participación cuenta.</p></header>
 <main class="wrap">
-  <section id="loginScreen" class="panel login">
-    <div style="font-size:70px">🗳️⚽</div>
-    <h2>Ingresa tu número de identidad</h2>
-    <p>Debe tener exactamente <strong>9 dígitos</strong>. Solo se permite un voto por persona.</p>
-    <input id="idInput" inputmode="numeric" maxlength="9" placeholder="000000000" autocomplete="off"/>
-    <button class="btn-primary" onclick="login()">Entrar a votar</button>
-    <div id="loginError" class="error"></div>
-  </section>
-
-  <section id="voteScreen" class="panel hidden">
-    <div class="topbar"><h2>Elige tu campeón del Mundial</h2><button class="btn-light" onclick="cancelVote()">Salir</button></div>
-    <div id="countryGrid" class="grid"></div>
-  </section>
-
-  <section id="successScreen" class="panel success hidden">
-    <div class="big">✅</div><h2>¡Voto registrado!</h2>
-    <p>Gracias por participar. Tu voto cuenta en la cancha y en la democracia.</p>
-    <button class="btn-blue" onclick="restart()">Nuevo votante</button>
-  </section>
-
-  <section id="adminLogin" class="panel login hidden">
-    <h2>Panel privado</h2><p>Ingresa la clave de administrador.</p>
-    <input id="adminPass" type="password" placeholder="Clave" style="letter-spacing:1px;font-size:24px"/>
-    <button class="btn-blue" style="width:100%;margin-top:16px" onclick="adminLogin()">Entrar</button>
-    <button class="btn-light" style="width:100%;margin-top:10px" onclick="restart()">Volver a votación</button>
-    <div id="adminError" class="error"></div>
-  </section>
-
-  <section id="adminPanel" class="admin hidden">
-    <div class="topbar"><h2>Resultados privados</h2><button class="btn-light" onclick="restart()">Volver a votación</button></div>
-    <div class="admin-actions">
-      <button class="btn-blue" onclick="loadResults()">Actualizar resultados</button>
-      <button class="btn-light" onclick="exportCSV()">Exportar CSV</button>
-      <button class="btn-danger" onclick="resetVotesCloud()">Borrar votos</button>
-    </div>
-    <div class="results-layout">
-      <div class="stat"><h3>Resultados en vivo</h3><div id="results"></div></div>
-      <div class="stat">
-        <h3>Resumen</h3>
-        <p><strong>Total de votos:</strong> <span id="totalVotes">0</span></p>
-        <p><strong>Ganando:</strong> <span id="winner">Sin votos todavía</span></p>
-        <h3>Últimos votos</h3>
-        <table><thead><tr><th>Hora</th><th>País</th></tr></thead><tbody id="recentVotes"></tbody></table>
-      </div>
-    </div>
-  </section>
+<section id="loginScreen" class="panel login"><div style="font-size:70px">🗳️⚽</div><h2>Ingresa tu número de identidad</h2><p>Debe tener exactamente <strong>9 dígitos</strong>. Solo se permite un voto por persona.</p><input id="idInput" inputmode="numeric" maxlength="9" placeholder="000000000" autocomplete="off"><button class="btn-primary" onclick="login()">Entrar a votar</button><div id="loginError" class="error"></div></section>
+<section id="voteScreen" class="panel hidden"><div class="topbar"><h2>Elige tu campeón del Mundial</h2><button class="btn-light" onclick="restart()">Salir</button></div><div id="countryGrid" class="grid"></div></section>
+<section id="successScreen" class="panel success hidden"><div class="big">✅</div><h2>¡Voto registrado!</h2><p>Gracias por participar. Tu voto cuenta en la cancha y en la democracia.</p><button class="btn-blue" onclick="restart()">Nuevo votante</button></section>
+<section id="adminLogin" class="panel login hidden"><h2>Panel privado</h2><p>Ingresa la clave de administrador.</p><input id="adminPass" type="password" placeholder="Clave" style="letter-spacing:1px;font-size:24px"><button class="btn-blue" style="width:100%;margin-top:16px" onclick="adminLogin()">Entrar</button><button class="btn-light" style="width:100%;margin-top:10px" onclick="restart()">Volver</button><div id="adminError" class="error"></div></section>
+<section id="adminPanel" class="admin hidden"><div class="topbar"><h2>Resultados privados</h2><button class="btn-light" onclick="restart()">Volver</button></div><div class="actions"><button class="btn-blue" onclick="loadResults()">Actualizar</button><button class="btn-light" onclick="toggleAutoRefresh()">Auto actualizar: <span id="autoStatus">OFF</span></button><button class="btn-light" onclick="toggleScreenMode()">Modo pantalla</button><button class="btn-light" onclick="exportCSV()">Exportar CSV</button><button class="btn-danger" onclick="resetVotes()">Borrar votos</button></div><div class="cards"><div class="card"><small>Total de votos</small><strong id="totalVotes">0</strong></div><div class="card winnerCard"><small>Ganando</small><strong id="winner">Sin votos</strong></div><div class="card"><small>Última actualización</small><strong id="lastUpdate">--:--</strong></div></div><div class="dashboard"><div class="stat"><h3>Ranking de países</h3><div id="results"></div></div><div class="stat"><h3>Últimos votos</h3><table><thead><tr><th>Hora</th><th>País</th></tr></thead><tbody id="recentVotes"></tbody></table></div></div></section>
 </main>
-
-<button class="admin-access" onclick="openAdmin()">Admin</button>
-<div class="footer-note">Votación digital · USA 2026 · Uso interno de la actividad</div>
-
+<button class="admin-access" onclick="openAdmin()">Admin</button><div class="footer-note">Votación digital · USA 2026 · Uso interno de la actividad</div>
 <script>
-/* PASO IMPORTANTE:
-   Pega aquí la URL de tu Apps Script cuando lo publiques como Web App.
-   Debe terminar en /exec
-*/
 const API_URL = "https://script.google.com/macros/s/AKfycbwW0PnABCxwBLrqV3ibB7y16vtIY0HFxJEnxftfoThJWPSiSvsqOAM0oCYnDY5R9zRyWA/exec";
 const ADMIN_PASSWORD = "TSE2026";
-
-const countries = [
-  {name:"Argentina", flag:"🇦🇷"}, {name:"Brasil", flag:"🇧🇷"}, {name:"Francia", flag:"🇫🇷"},
-  {name:"España", flag:"🇪🇸"}, {name:"Inglaterra", flag:"🏴"}, {name:"Alemania", flag:"🇩🇪"},
-  {name:"Portugal", flag:"🇵🇹"}, {name:"Países Bajos", flag:"🇳🇱"}, {name:"Uruguay", flag:"🇺🇾"},
-  {name:"México", flag:"🇲🇽"}, {name:"Estados Unidos", flag:"🇺🇸"}, {name:"Colombia", flag:"🇨🇴"},
-  {name:"Bélgica", flag:"🇧🇪"}, {name:"Croacia", flag:"🇭🇷"}, {name:"Marruecos", flag:"🇲🇦"},
-  {name:"Japón", flag:"🇯🇵"}, {name:"Suiza", flag:"🇨🇭"}, {name:"Suecia", flag:"🇸🇪"},
-  {name:"Türkiye", flag:"🇹🇷"}, {name:"Senegal", flag:"🇸🇳"}, {name:"Canadá", flag:"🇨🇦"},
-  {name:"Australia", flag:"🇦🇺"}, {name:"Ecuador", flag:"🇪🇨"}, {name:"Paraguay", flag:"🇵🇾"}
-];
-
-let currentId = null;
-let currentRawId = null;
-let currentResults = [];
-
-function onlyDigits(value){ return value.replace(/\D/g, ""); }
-document.getElementById("idInput").addEventListener("input", e=>{ e.target.value = onlyDigits(e.target.value).slice(0,9); });
-
-function api(action, data = {}) {
-  return new Promise((resolve, reject) => {
-
-    const callbackName = "callback_" + Date.now();
-
-    const params = new URLSearchParams({
-      action,
-      callback: callbackName,
-      ...data
-    });
-
-    const script = document.createElement("script");
-
-    script.src = API_URL + "?" + params.toString();
-
-    window[callbackName] = function(response) {
-      resolve(response);
-      script.remove();
-      delete window[callbackName];
-    };
-
-    script.onerror = function() {
-      reject(new Error("No se pudo conectar con Google Sheets."));
-    };
-
-    document.body.appendChild(script);
-
-  });
-}
-
-function hashId(str){
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
-  return "ID-" + Math.abs(hash).toString(16);
-}
-
-async function login(){
-  const raw = document.getElementById("idInput").value.trim();
-  const err = document.getElementById("loginError");
-  err.textContent = "";
-
-  if(!/^\d{9}$/.test(raw)){ err.textContent = "Debes ingresar exactamente 9 dígitos."; return; }
-
-  try{
-    err.textContent = "Verificando...";
-    const idHash = hashId(raw);
-    const check = await api("check", {idHash});
-    if(check.exists){ err.textContent = "Este número de identidad ya registró un voto."; return; }
-    currentId = idHash;
-    currentRawId = raw;
-    show("voteScreen");
-  }catch(e){
-    err.textContent = e.message || "No se pudo conectar con la base de datos.";
-  }
-}
-
-function renderCountries(){
-  const grid = document.getElementById("countryGrid");
-  grid.innerHTML = "";
-  countries.forEach(c=>{
-    const btn = document.createElement("button");
-    btn.className = "country";
-    btn.innerHTML = `<div class="flag">${c.flag}</div><h3>${c.name}</h3><small>Votar por ${c.name}</small>`;
-    btn.onclick = ()=> vote(c.name);
-    grid.appendChild(btn);
-  });
-}
-
-async function vote(country){
-  if(!currentId) return restart();
-
-  try{
-    showLoadingVote(country);
-    const save = await api("vote", {idHash: currentId, country});
-    if(!save.ok){
-      alert(save.message || "No se pudo registrar el voto.");
-      restart();
-      return;
-    }
-    currentId = null;
-    currentRawId = null;
-    show("successScreen");
-  }catch(e){
-    alert(e.message || "Error al guardar el voto.");
-    show("voteScreen");
-  }
-}
-
-function showLoadingVote(country){
-  document.getElementById("countryGrid").innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:24px;color:#0b2b63;font-weight:900;padding:40px">Registrando voto por ${country}...</div>`;
-}
-
-function show(screen){
-  ["loginScreen","voteScreen","successScreen","adminLogin","adminPanel"].forEach(id=>document.getElementById(id).classList.add("hidden"));
-  document.getElementById(screen).classList.remove("hidden");
-}
-
-function restart(){
-  currentId = null; currentRawId = null;
-  document.getElementById("idInput").value = "";
-  document.getElementById("loginError").textContent = "";
-  document.getElementById("adminPass").value = "";
-  document.getElementById("adminError").textContent = "";
-  renderCountries();
-  show("loginScreen");
-}
-
-function cancelVote(){ restart(); }
-function openAdmin(){ show("adminLogin"); }
-
-async function adminLogin(){
-  const pass = document.getElementById("adminPass").value;
-  const err = document.getElementById("adminError");
-  if(pass !== ADMIN_PASSWORD){ err.textContent = "Clave incorrecta."; return; }
-  show("adminPanel");
-  await loadResults();
-}
-
-async function loadResults(){
-  const data = await api("results", {adminPassword: ADMIN_PASSWORD});
-  if(!data.ok){ alert(data.message || "No autorizado."); return; }
-  currentResults = data.votes || [];
-  renderResults(currentResults);
-}
-
-function renderResults(votes){
-  const counts = {};
-  countries.forEach(c=>counts[c.name]=0);
-  votes.forEach(v=>counts[v.country]=(counts[v.country]||0)+1);
-
-  const total = votes.length;
-  document.getElementById("totalVotes").textContent = total;
-
-  let sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
-  document.getElementById("winner").textContent = sorted[0][1] > 0 ? `${sorted[0][0]} (${sorted[0][1]} votos)` : "Sin votos todavía";
-
-  const results = document.getElementById("results");
-  results.innerHTML = "";
-  sorted.forEach(([country,count])=>{
-    const percent = total ? Math.round((count/total)*100) : 0;
-    const flag = countries.find(c=>c.name===country)?.flag || "🏳️";
-    const row = document.createElement("div");
-    row.className = "barrow";
-    row.innerHTML = `<div>${flag} ${country}</div><div class="barbg"><div class="bar" style="width:${percent}%"></div></div><div>${count}</div>`;
-    results.appendChild(row);
-  });
-
-  const tbody = document.getElementById("recentVotes");
-  tbody.innerHTML = "";
-  votes.slice(-8).reverse().forEach(v=>{
-    const d = new Date(v.timestamp);
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})}</td><td>${v.country}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-function exportCSV(){
-  let csv = "pais,fecha_hora,id_hash\n";
-  currentResults.forEach(v=>{ csv += `"${v.country}","${new Date(v.timestamp).toLocaleString()}","${v.idHash}"\n`; });
-  downloadFile(csv, "votos_mundial_2026.csv", "text/csv");
-}
-function downloadFile(content, filename, type){
-  const blob = new Blob([content], {type});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
-}
-async function resetVotesCloud(){
-  const confirmText = prompt("Escribe BORRAR para eliminar todos los votos:");
-  if(confirmText !== "BORRAR") return;
-  const data = await api("reset", {adminPassword: ADMIN_PASSWORD});
-  alert(data.message || "Listo.");
-  await loadResults();
-}
-
+const countries=[{name:"Argentina",flag:"🇦🇷"},{name:"Brasil",flag:"🇧🇷"},{name:"Francia",flag:"🇫🇷"},{name:"España",flag:"🇪🇸"},{name:"Inglaterra",flag:"🏴"},{name:"Alemania",flag:"🇩🇪"},{name:"Portugal",flag:"🇵🇹"},{name:"Países Bajos",flag:"🇳🇱"},{name:"Uruguay",flag:"🇺🇾"},{name:"México",flag:"🇲🇽"},{name:"Estados Unidos",flag:"🇺🇸"},{name:"Colombia",flag:"🇨🇴"},{name:"Bélgica",flag:"🇧🇪"},{name:"Croacia",flag:"🇭🇷"},{name:"Marruecos",flag:"🇲🇦"},{name:"Japón",flag:"🇯🇵"},{name:"Suiza",flag:"🇨🇭"},{name:"Suecia",flag:"🇸🇪"},{name:"Türkiye",flag:"🇹🇷"},{name:"Senegal",flag:"🇸🇳"},{name:"Canadá",flag:"🇨🇦"},{name:"Australia",flag:"🇦🇺"},{name:"Ecuador",flag:"🇪🇨"},{name:"Paraguay",flag:"🇵🇾"}];
+let currentId=null,currentResults=[],autoRefresh=false,autoTimer=null,screenMode=false;
+function onlyDigits(v){return v.replace(/\D/g,"")}document.getElementById("idInput").addEventListener("input",e=>{e.target.value=onlyDigits(e.target.value).slice(0,9)});
+function hashId(str){let hash=0;for(let i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash|=0}return"ID-"+Math.abs(hash).toString(16)}
+function api(action,data={}){return new Promise((resolve,reject)=>{const callbackName="callback_"+Date.now()+"_"+Math.floor(Math.random()*100000);const params=new URLSearchParams({action,callback:callbackName,...data});const script=document.createElement("script");script.src=API_URL+"?"+params.toString();const timer=setTimeout(()=>{cleanup();reject(new Error("No se pudo conectar con Google Sheets."))},15000);function cleanup(){clearTimeout(timer);delete window[callbackName];if(script.parentNode)script.parentNode.removeChild(script)}window[callbackName]=function(response){cleanup();resolve(response)};script.onerror=function(){cleanup();reject(new Error("No se pudo conectar con Google Sheets."))};document.body.appendChild(script)})}
+function renderCountries(){const grid=document.getElementById("countryGrid");grid.innerHTML="";countries.forEach(c=>{const btn=document.createElement("button");btn.className="country";btn.innerHTML=`<div class="flag">${c.flag}</div><h3>${c.name}</h3><small>Votar por ${c.name}</small>`;btn.onclick=()=>vote(c.name);grid.appendChild(btn)})}
+async function login(){const raw=document.getElementById("idInput").value.trim();const err=document.getElementById("loginError");err.textContent="";if(!/^\d{9}$/.test(raw)){err.textContent="Debes ingresar exactamente 9 dígitos.";return}try{err.textContent="Verificando...";const idHash=hashId(raw);const check=await api("check",{idHash});if(check.exists){err.textContent="Este número de identidad ya registró un voto.";return}currentId=idHash;show("voteScreen")}catch(e){err.textContent=e.message||"No se pudo conectar con la base de datos."}}
+async function vote(country){if(!currentId)return restart();const grid=document.getElementById("countryGrid");grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;font-size:24px;color:#0b2b63;font-weight:900;padding:40px">Registrando voto por ${country}...</div>`;try{const result=await api("vote",{idHash:currentId,country});if(!result.ok){alert(result.message||"No se pudo registrar el voto.");restart();return}currentId=null;show("successScreen")}catch(e){alert(e.message||"Error al guardar el voto.");renderCountries()}}
+function show(screen){["loginScreen","voteScreen","successScreen","adminLogin","adminPanel"].forEach(id=>document.getElementById(id).classList.add("hidden"));document.getElementById(screen).classList.remove("hidden")}
+function restart(){currentId=null;document.getElementById("idInput").value="";document.getElementById("loginError").textContent="";document.getElementById("adminError").textContent="";document.getElementById("adminPass").value="";renderCountries();show("loginScreen")}
+function openAdmin(){show("adminLogin")}
+async function adminLogin(){const pass=document.getElementById("adminPass").value;const err=document.getElementById("adminError");if(pass!==ADMIN_PASSWORD){err.textContent="Clave incorrecta.";return}show("adminPanel");await loadResults()}
+async function loadResults(){const data=await api("results",{adminPassword:ADMIN_PASSWORD});if(!data.ok){alert(data.message||"No autorizado.");return}currentResults=data.votes||[];renderResults(currentResults)}
+function renderResults(votes){const counts={};countries.forEach(c=>counts[c.name]=0);votes.forEach(v=>counts[v.country]=(counts[v.country]||0)+1);const total=votes.length;document.getElementById("totalVotes").textContent=total;const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);const top=sorted.find(x=>x[1]>0);document.getElementById("winner").textContent=top?`${top[0]} (${top[1]})`:"Sin votos";document.getElementById("lastUpdate").textContent=new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});const results=document.getElementById("results");results.innerHTML="";sorted.forEach(([country,count])=>{if(count===0&&total>0)return;const percent=total?Math.round((count/total)*100):0;const flag=countries.find(c=>c.name===country)?.flag||"🏳️";const row=document.createElement("div");row.className="barrow";row.innerHTML=`<div>${flag} ${country}</div><div class="barbg"><div class="bar" style="width:${percent}%"></div></div><div>${count}</div>`;results.appendChild(row)});if(total===0)results.innerHTML="<p>Aún no hay votos registrados.</p>";const tbody=document.getElementById("recentVotes");tbody.innerHTML="";votes.slice(-10).reverse().forEach(v=>{const d=new Date(v.timestamp);const tr=document.createElement("tr");tr.innerHTML=`<td>${d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}</td><td>${v.country}</td>`;tbody.appendChild(tr)})}
+function toggleAutoRefresh(){autoRefresh=!autoRefresh;document.getElementById("autoStatus").textContent=autoRefresh?"ON":"OFF";if(autoRefresh){autoTimer=setInterval(loadResults,5000);loadResults()}else clearInterval(autoTimer)}
+function toggleScreenMode(){screenMode=!screenMode;document.body.classList.toggle("screenMode",screenMode)}
+function exportCSV(){let csv="pais,fecha_hora,id_hash\n";currentResults.forEach(v=>{csv+=`"${v.country}","${new Date(v.timestamp).toLocaleString()}","${v.idHash}"\n`});const blob=new Blob([csv],{type:"text/csv"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="votos_mundial_2026.csv";a.click();URL.revokeObjectURL(url)}
+async function resetVotes(){const confirmText=prompt("Escribe BORRAR para eliminar todos los votos:");if(confirmText!=="BORRAR")return;const data=await api("reset",{adminPassword:ADMIN_PASSWORD});alert(data.message||"Listo.");await loadResults()}
 renderCountries();
 </script>
 </body>
